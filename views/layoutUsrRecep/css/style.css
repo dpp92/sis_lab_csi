@@ -1,0 +1,163 @@
+*{
+	margin: 0px;
+	padding: 0px;
+}
+body{
+	margin: 2px;
+	background-color: rgb(255,255,255);
+	width: 99%;
+	height: 99%;
+	font-family: Tahoma,sans-serif,Helvetica;
+}
+#head{
+	padding: 5px;
+	margin-bottom: 0px;
+	width: 100%;
+	height: 100px;
+	background-color: rgb(91,173,255);
+}
+#head img{
+	margin: 5px;
+	width: 150px;
+	height: 90px;
+	float: left;
+}
+#boxUser{
+	width: 120px;
+	float: right;
+	clear: all;
+	text-align: center;
+}
+#boxUser p:last-child{
+	margin: 5px;
+	border-radius: 64px 64px 64px 64px;
+	-moz-border-radius: 64px 64px 64px 64px;
+	-webkit-border-radius: 64px 64px 64px 64px;
+	background: rgba(226,226,226,1);
+	background: -moz-radial-gradient(center, ellipse cover, rgba(226,226,226,1) 0%, rgba(209,209,209,1) 51%, rgba(219,219,219,1) 69%, rgba(254,254,254,1) 100%);
+	background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, rgba(226,226,226,1)), color-stop(51%, rgba(209,209,209,1)), color-stop(69%, rgba(219,219,219,1)), color-stop(100%, rgba(254,254,254,1)));
+	background: -webkit-radial-gradient(center, ellipse cover, rgba(226,226,226,1) 0%, rgba(209,209,209,1) 51%, rgba(219,219,219,1) 69%, rgba(254,254,254,1) 100%);
+	background: -o-radial-gradient(center, ellipse cover, rgba(226,226,226,1) 0%, rgba(209,209,209,1) 51%, rgba(219,219,219,1) 69%, rgba(254,254,254,1) 100%);
+	background: -ms-radial-gradient(center, ellipse cover, rgba(226,226,226,1) 0%, rgba(209,209,209,1) 51%, rgba(219,219,219,1) 69%, rgba(254,254,254,1) 100%);
+	background: radial-gradient(ellipse at center, rgba(226,226,226,1) 0%, rgba(209,209,209,1) 51%, rgba(219,219,219,1) 69%, rgba(254,254,254,1) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e2e2e2', endColorstr='#fefefe', GradientType=1 );
+}
+#boxUser p{
+	margin: 0px;
+}
+#boxUser a{
+	width: 120px;
+	display: none;
+}
+#boxUser:hover a{
+	cursor: pointer;
+	display: block!important;
+	position: relative;
+}
+#empresa h2,h3{
+	margin: 10px;
+	font-size: 14px;
+}
+#main{
+	position: relative;
+}
+#menuH{
+    margin-right: 15%;
+    position: static;
+    float: left;
+}
+#main ul{
+	width: 95%;
+	list-style: none;
+	text-align: center;
+}
+
+ul li a{
+	font-size: 10px;
+	line-height: 30px;
+	text-decoration: none;
+	display: block;
+	padding: 10px;
+	border: #8A2AF5;
+	height: 50px;
+	background-color: rgb(91,173,255);
+	
+	
+}
+/* Segundo nivel*/
+#main ul li ul {
+    display: none;
+    position: absolute;
+    margin-left: 133px;
+    background-color: aqua;
+    margin-top: -70px;
+}
+#main ul li:hover  ul {
+    display: block;
+}
+/* tercer nivel */
+#main ul li  ul:hover li {
+    display: block;
+}
+.tri li ul li a{
+    width: 120px;
+    font-size: 10px;
+	line-height: 30px;
+	text-decoration: none;
+    display: none;
+	padding: 10px;
+	border: #8A2AF5;
+	height: 50px;
+	background-color: rgb(91,173,255);
+}
+.tri li:hover ul li a {
+    display: block;
+}
+
+
+ul li a:hover{
+	cursor: pointer;
+	background-color: #1DA4F9;
+	text-decoration:none; color:#6B5757
+}
+
+a:link {text-decoration:none; color: #100F0F}
+a:visited {text-decoration:none; color:#100F0F} 
+
+.actual:active{
+
+	background: #1A99E2;
+	-moz-box-shadow: 0px 1px 0px 0px rgb(0, 105, 202);
+	-webkit-box-shadow: 0px 1px 0px 0px rgb(0, 105, 202);
+	box-shadow: 0px 1px 0px 0px rgb(0, 105, 202);
+}
+
+#box{
+	height: 170px;
+	display: block;
+	position: relative;
+	padding: 1px;
+	text-align: center;
+	width: 94%;
+}
+#help{
+
+	display: block;
+	padding: 10px;
+	height: 90px;
+	background-color: rgb(255,255,255);
+	border: 1px solid #3CF2E3;
+	overflow-y: scroll;
+	
+}
+.box2{
+	display: block;
+	padding: 10px;
+	height: 62px;
+	background-color: rgb(91,173,255);
+	
+}
+.box2:hover {
+	cursor: pointer;
+	background-color: #1DA4F9;
+}

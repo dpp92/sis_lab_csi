@@ -1,0 +1,84 @@
+body{
+	margin: 2px;
+	background-color: rgb(255,255,255);
+	width: 99%;
+	height: 99%;
+	font-family: Tahoma;
+}
+#head{
+	padding: 5px;
+	margin: 5px;
+	width: 1360px%;
+	height: 100px;
+	background-color: rgb(91,173,255);
+}
+#head img{
+	margin: 10px;
+	width: 80px;
+	height: 70px;
+	float: left;
+}
+#logo{
+
+}
+#empresa h2,h3{
+	margin: 10px;
+	font-size: 14px;
+}
+
+#formulario{
+	margin: 10px auto 15px auto;
+	width: 490px;
+	height: 500px;
+	border: outset;
+	
+}
+#formulario h3{
+	margin: 0px auto auto auto;
+	width: 490px;
+	height: 60px;
+	background: rgb(91,173,255);
+	text-align: center;
+	line-height: 60px;
+}
+input[type="text"], input[type="password"]{
+	text-align:center;
+	position: relative;
+	width:60%;
+	padding:2%;
+	margin: 15px 20px 5% 0px;
+	font-family: 'Tahoma', sans-serif;
+	color: #676767;
+	font-weight:600;
+	font-size: 16px;
+	border-radius: 5px;
+	border:1px solid #DED6D6;
+	-webkit-appearance:none;
+}
+form label{
+	padding: 30px;
+}
+form #check{
+	clear: left;
+	text-align: right;
+	padding: 2%;
+}
+#check:hover{
+	color: #3EE41D;
+	cursor: pointer;
+}
+button {
+
+    display: block;
+    margin-top: 10px;
+	margin-left: auto;
+	margin-right: auto;
+	height: 45px;
+	width: 50%;
+ }
+ button:hover{
+ 	border: 1px solid #C9C6C6;
+ }
+ input:focus{
+ 	background-color: #D8F6F4;
+ }
