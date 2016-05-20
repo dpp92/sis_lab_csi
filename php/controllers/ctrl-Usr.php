@@ -21,8 +21,6 @@ class template{
  }
 
 }
-
-
 $TEMPLATE = new template; // instaciamos la clase
 
 

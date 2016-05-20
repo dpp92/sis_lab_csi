@@ -1,5 +1,8 @@
 <?php 
-	include '../../php/controllers/seguridad.php';
+	include './php/models/seguridad.php';
+	$insSeguridad = new Seguridad();
+	$tokenregistrado = $insSeguridad->generadorToken();
+	$insSeguridad->checkValidSession();
 ?>
 <!DOCTYPE html>
 <html>

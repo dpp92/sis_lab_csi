@@ -14,67 +14,9 @@
     }
     
    /*Inicia diseño de tabs */
-    .tabs {
-    max-width: 100%;
-    float: none;
-    list-style: none;
-    padding: 0;
-    margin: 20px auto;
-    clear: both;
-    }
 
-    .tabs:after {
-        content: '';
-        display: table;
-        clear: both;
-    }
 
-    .tabs input[type=radio] {
-        display:none;
-    }
-
-    .tabs label {
-        display: block;
-        float: left;
-        width: 20%;
-
-        text-align: center;
-        line-height: 2;
-        cursor: pointer;
-        box-shadow: inset 0 2px #ccc;
-
-        -webkit-transition: all 0.5s; /* Safari 3.1 to 6.0 */
-        transition: all 0.5s;
-    }
-
-    .tabs label i {
-        padding: 5px;
-        margin-right: 0;
-    }
-    .tab-content {
-        display: none;
-        width: 100%;
-        float: left;
-        padding: 15px;
-        box-sizing: border-box;
-    }
-
-    .tab-content * {
-
-        -webkit-animation: scale 0.7s ease-in-out;
-        -moz-animation: scale 0.7s ease-in-out;
-        animation: scale 0.7s ease-in-out;
-    }
-
-   .tabs [id^="tab"]:checked + label {
-    background-color: darkgray;
-    
-    }
-
-    #tab1:checked ~ #tab-content1,
-    #tab2:checked ~ #tab-content2{
-        display: block;
-    }
+   /*fin diseño tabs*/
     
     #fotos{
         text-align: center;
@@ -129,21 +71,102 @@
            <div id="firmaUsuario"><img src="img/LogoDigilab.jpg" alt=""></div>
         </div>
     <!--Fin foto y firma-->
-        
         <!-- Script para add Usuario-->
-        <script>
-            
-            $(function() {
-                /* Cada vez que el usuario escriba algo en uno de los input con la clase
+         <script >
+             $(document).ready(function() {
+
+                 var numInputCurso = 1;
+                 var numInputCosa  = 1;
+                function eliminar(cont,obj){
+                    fi = document.getElementById(cont);
+                    fi.removeChild(document.getElementById(obj));
+                }
+                function crearElementos(array) {
+
+                    for (i=0; i< array.length; i++){
+
+                        if (numInputCurso==1){
+                            var divSubmit = $(document.createElement('div'));
+                            $(divSubmit).append('<input type=button class="bt" onclick="GetTextValue()"' +
+                                'id=btSubmit value=Enviar />');
+                            $('#tab-content1').after(divSubmit);
+                        }
+
+
+                        $("#" + array[i][0]).append(
+                            "<p  id=\"" + array[i][2] + "\">" +
+                            "<input type=\"text\" class=\"" + array[i][1] + "\" id=\"" + array[i][2] + "\">" +
+                            "</p>"
+                        );
+                    }
+                }
+
+             $('.add-icon').click(function(e) {
+                    var idElem = $(this).attr('id');
+                    if (idElem == "addCursos") {
+
+                        arCurso = new Array(
+                            new Array(
+                             "tab-content1",
+                            "inputCurso",
+                            "inputCurso"+numInputCurso
+                            )
+                        );
+
+                        crearElementos(arCurso);
+                        numInputCurso++;
+                    }
+                    if (idElem == "addCosa"){
+                        arCurso = new Array(
+                            new Array(
+                                "tab-content2",
+                                "inputCosa",
+                                "inputCosa"+numInputCosa
+                            )
+                        );
+                        crearElementos(arCurso);
+                        numInputCosa++;
+                    }
+
+                });
+             $('.btnDism').click(function(a){
+                  var idElem = $(this).attr('id');
+                  if(idElem == "dismCurso"){
+                      if (numInputCurso != 0) { $('#inputCurso' + numInputCurso).remove(); numInputCurso = numInputCurso - 1; }
+                  }
+                  if(idElem=="dismCosa"){
+                      if (numInputCosa != 0) { $('#inputCosa' + numInputCosa).remove(); numInputCosa = numInputCosa - 1; }
+                  }
+             });
+
+              var divValue, values = '';
+
+              function GetTextValue() {
+                    console.log("glglgl");
+                     $(divValue).empty();
+                     $(divValue).remove(); values = '';
+
+                     $('.input').each(function() {
+                         divValue = $(document.createElement('div')).css({
+                             padding:'5px', width:'200px'
+                         });
+                         values += this.value + '<br />'
+                     });
+
+                     $(divValue).append('<p><b>Tus valores añadidos</b></p>' + values);
+                     $('body').append(divValue);
+
+                 }
+             /* Cada vez que el usuario escriba algo en uno de los input con la clase
                 clonable_text_input, llamamos a la funcion handle_keypress, esto incluye
                 a los nuevos text input que generemos porque ellos tambien van a ser de
-                la clase clonable_text_input */
-                $('input.clonable_text_input').on('keypress', handle_keypress)
+                la clase clonable_text_input
+                $('#clonable_text_input').on('keypress', handle_keypress)
                 })
 
                 num = 0;
                 /* Esta funcion es llamada cuando el usuario escribe algo en uno de los input
-                con la clase clonable_text_input */
+                con la clase clonable_text_input
                 function handle_keypress(event) {
                 // Si la tecla que apreto fue Enter
                 if (event.keyCode == 13)
@@ -156,29 +179,73 @@
                 }
 
                 // Y lo colocamos en el div correspondiente que definimos en el HTML
-                $('#tab-content1').append(new_input)
-                }
-        
+                $('#tab-content1').append(new_input)*/
+
+             })
+
+
         </script>
          <!--Inicia tabs -->
-         <div class="tabs">
-	    <input type="radio" name="tabs" id="tab1" checked >
-	    <label for="tab1">
-	        <i class="fa fa-html5"></i><span>Cursos</span>
-	    </label>
+        <style>
+            .tabs{
+                margin: 10px 5px;
+            }
+            #tab1{
+                margin:0px 5px 0px 0px;
+                float: left;
+                clear: both;
+                
+            }
+            #tab2{
+                float: left;
+            }
+            .add-icon {
+                cursor: pointer;
+                background: -webkit-linear-gradient(top, #3498db, #2980b9);
+                background: -moz-linear-gradient(top, #3498db, #2980b9);
+                background: -o-linear-gradient(top, #3498db, #2980b9);
+                background: -ms-linear-gradient(top, #3498db, #2980b9);
+                background: linear-gradient(top, #3498db, #2980b9);
+                width: 15px;
+                text-align: center;
+                margin-right: 2px;
+            }
+            .btnDism {
+                cursor: pointer;
+                background: -webkit-linear-gradient(top, #e67e22, #d35400);
+                background: -moz-linear-gradient(top, #e67e22, #d35400);
+                background: -o-linear-gradient(top, #e67e22, #d35400);
+                background: -ms-linear-gradient(top, #e67e22, #d35400);
+                background: linear-gradient(top, #e67e22, #d35400);
+                width: 15px;
+                display: inline-block;
+                text-align: center;
+            }
+        </style>
+ <!--Inicia div tabs-->
 
-	    <input type="radio" name="tabs" id="tab2">
-	    <label for="tab2">
-	        <i class="fa fa-css3"></i><span>Cosas</span>
-	    </label>
+        <div id="blog-test-cont">
+            <p class="blog-test">Pulsa para probar</p>
+        </div>
+        <div class="tabs">
+         <div id="tab1">
+        <label >
+            <span>Cursos</span><span class="add-icon" id="addCursos">+</span><span class="btnDism" id="dismCurso">-</span>
+        </label>
+             <div id="tab-content1" class="tab-content">
 
-	    <div id="tab-content1" class="tab-content">
-	      <input class="clonable_text_input" type="text">
-	    </div> <!-- #tab-content1 -->
+             </div>
+         </div>
+         <div id="tab2">
+        <label >
+            <span>Cosas</span><span class="add-icon" id="addCosa">+</span><span class="btnDism" id="dismCosa">-</span>
+        </label>
+             <div id="tab-content2" class="tab-content">
 
-	    <div id="tab-content2" class="tab-content">
-	      <input class="add" type="text">
-	    </div> <!-- #tab-content2 -->
-	    </div>
+             </div>
+         </div>
+        </div>
+
+        
     </form>
 </div>
