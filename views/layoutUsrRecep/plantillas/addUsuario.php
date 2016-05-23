@@ -43,7 +43,8 @@
 <br>
 <div id="boxForm">
 
-    <form action="" id="formAddUser" method="post" enctype="application/x-www-form-urlencoded">
+    <form id="formAddUser" method="post" enctype="application/x-www-form-urlencoded">
+        <center class="msgResp"><div >Llene el Formulario Completo</div></center>
     <div id="formulario">
         <div><label for="nombre">Nombre</label><input type="text" id="nombre"></div>
         <div><label for="apellidos">Apellidos</label><input type="text" id="apellidos"></div>
@@ -74,25 +75,18 @@
         <!-- Script para add Usuario-->
          <script >
              $(document).ready(function() {
+            $('.msgResp').hide();
+             var numInputCurso = 1;
+             var numInputCosa  = 1;
 
-                 var numInputCurso = 1;
-                 var numInputCosa  = 1;
                 function eliminar(cont,obj){
                     fi = document.getElementById(cont);
                     fi.removeChild(document.getElementById(obj));
                 }
+
                 function crearElementos(array) {
 
                     for (i=0; i< array.length; i++){
-
-                        if (numInputCurso==1){
-                            var divSubmit = $(document.createElement('div'));
-                            $(divSubmit).append('<input type=button class="bt" onclick="GetTextValue()"' +
-                                'id=btSubmit value=Enviar />');
-                            $('#tab-content1').after(divSubmit);
-                        }
-
-
                         $("#" + array[i][0]).append(
                             "<p  id=\"" + array[i][2] + "\">" +
                             "<input type=\"text\" class=\"" + array[i][1] + "\" id=\"" + array[i][2] + "\">" +
@@ -101,8 +95,8 @@
                     }
                 }
 
-             $('.add-icon').click(function(e) {
-                    var idElem = $(this).attr('id');
+                $('.add-icon').click(function(e) {
+                  var idElem = $(this).attr('id');
                     if (idElem == "addCursos") {
 
                         arCurso = new Array(
@@ -129,7 +123,7 @@
                     }
 
                 });
-             $('.btnDism').click(function(a){
+                $('.btnDism').click(function(a){
                   var idElem = $(this).attr('id');
                   if(idElem == "dismCurso"){
                       if (numInputCurso != 0) { $('#inputCurso' + numInputCurso).remove(); numInputCurso = numInputCurso - 1; }
@@ -137,26 +131,35 @@
                   if(idElem=="dismCosa"){
                       if (numInputCosa != 0) { $('#inputCosa' + numInputCosa).remove(); numInputCosa = numInputCosa - 1; }
                   }
-             });
+                });
 
-              var divValue, values = '';
+                 var divValue, values = '',array = [];
 
-              function GetTextValue() {
-                    console.log("glglgl");
+                 $('#formAddUser').submit(function () {
                      $(divValue).empty();
                      $(divValue).remove(); values = '';
-
-                     $('.input').each(function() {
+                     $('input').each(function() {
                          divValue = $(document.createElement('div')).css({
                              padding:'5px', width:'200px'
                          });
-                         values += this.value + '<br />'
+
+                         if(this.value == ""){
+                             $(".msgResp").show();
+                         }else{
+                             var values= this;
+                             //alert("values.id="+ values.id + ", values.value=" + values.value);
+                             array[values.id] = values.value;
+                             $(divValue).append('<p><b>Tus valores añadidos</b></p>');
+                         }
+
+
                      });
+                     console.log(array);
+                     $(divValue).append(array.toString());
+                     $('#submit').append(divValue);
+                     return false;
+                 })
 
-                     $(divValue).append('<p><b>Tus valores añadidos</b></p>' + values);
-                     $('body').append(divValue);
-
-                 }
              /* Cada vez que el usuario escriba algo en uno de los input con la clase
                 clonable_text_input, llamamos a la funcion handle_keypress, esto incluye
                 a los nuevos text input que generemos porque ellos tambien van a ser de
@@ -180,12 +183,8 @@
 
                 // Y lo colocamos en el div correspondiente que definimos en el HTML
                 $('#tab-content1').append(new_input)*/
-
              })
-
-
         </script>
-         <!--Inicia tabs -->
         <style>
             .tabs{
                 margin: 10px 5px;
@@ -221,29 +220,61 @@
                 display: inline-block;
                 text-align: center;
             }
+
+            #submit{
+                width:660px;
+                float:right;
+                margin:auto;
+                text-align: right;
+                padding:5px;
+            }
+            .boton_envio{
+                background: #38c2b7;
+                background-image: -webkit-linear-gradient(top, #38c2b7, #2196de);
+                background-image: -moz-linear-gradient(top, #38c2b7, #2196de);
+                background-image: -ms-linear-gradient(top, #38c2b7, #2196de);
+                background-image: -o-linear-gradient(top, #38c2b7, #2196de);
+                background-image: linear-gradient(to bottom, #38c2b7, #2196de);
+                -webkit-border-radius: 12;
+                -moz-border-radius: 12;
+                border-radius: 12px;
+                font-family: Georgia;
+                color: #383838;
+                font-size: 15px;
+                padding: 6px 10px 6px 10px;
+                text-decoration: none;
+            }
+            .boton_envio:hover{
+                background: #3ad5e6;
+                background-image: -webkit-linear-gradient(top, #3ad5e6, #19c2b1);
+                background-image: -moz-linear-gradient(top, #3ad5e6, #19c2b1);
+                background-image: -ms-linear-gradient(top, #3ad5e6, #19c2b1);
+                background-image: -o-linear-gradient(top, #3ad5e6, #19c2b1);
+                background-image: linear-gradient(to bottom, #3ad5e6, #19c2b1);
+                text-decoration: none;
+            }
+
+            
+
         </style>
  <!--Inicia div tabs-->
 
-        <div id="blog-test-cont">
-            <p class="blog-test">Pulsa para probar</p>
-        </div>
         <div class="tabs">
-         <div id="tab1">
-        <label >
-            <span>Cursos</span><span class="add-icon" id="addCursos">+</span><span class="btnDism" id="dismCurso">-</span>
-        </label>
-             <div id="tab-content1" class="tab-content">
-
+             <div id="tab1">
+                <label >
+                    <span>Cursos</span><span class="add-icon" id="addCursos">+</span><span class="btnDism" id="dismCurso">-</span>
+                </label>
+                 <div id="tab-content1" class="tab-content"></div>
              </div>
-         </div>
-         <div id="tab2">
-        <label >
-            <span>Cosas</span><span class="add-icon" id="addCosa">+</span><span class="btnDism" id="dismCosa">-</span>
-        </label>
-             <div id="tab-content2" class="tab-content">
-
+             <div id="tab2">
+                <label >
+                    <span>Cosas</span><span class="add-icon" id="addCosa">+</span><span class="btnDism" id="dismCosa">-</span>
+                </label>
+                 <div id="tab-content2" class="tab-content"></div>
              </div>
-         </div>
+        </div>
+        <div id="submit">
+            <button class="boton_envio">Guardar Datos</button>
         </div>
 
         
