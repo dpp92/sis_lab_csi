@@ -4,7 +4,7 @@
 
 	
 	//$dato1 = sanitize($_POST["dato"]);
-	$paginaActual = $_POST["partida"];
+	$paginaActual = strip_tags($_POST["partida"]);
 	//conectamos a la bd
 	$Conexion = new Conect();
 	$Conexion->con();
@@ -28,7 +28,7 @@
     }
     for($i=1; $i<=$nroPaginas; $i++){
         if($i == $paginaActual){
-            $lista = $lista.'<li ><a class="active" onclick="ajaxCall('.$i.');">'.$i.'</a></li>';
+            $lista = $lista.'<li ><a name='.$i.' class="active" onclick="ajaxCall('.$i.');">'.$i.'</a></li>';
         }else{
             $lista = $lista.'<li><a onclick="ajaxCall('.$i.');">'.$i.'</a></li>';
         }

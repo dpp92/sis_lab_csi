@@ -5,9 +5,9 @@ include 'header.php';
 <style type="text/css" >
 	iframe{
 		position: absolute;
-		width: 85%;
+		width: 95%;
 		height: 80%;
-		margin-left: 10%;
+		margin-left: 4%;
 	}
 </style>
 <iframe src="?m=lists" ></iframe>

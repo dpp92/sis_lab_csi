@@ -2,11 +2,7 @@ $(document).ready(ajaxCall(1));
  $(function(){
   tablita = document.getElementById("tablelistaUser");
 });                      
-   
 
-function hello(){
-      alert("Hola");
-    }
     
     function ajaxCall(partida){
       var datosLista = {
@@ -22,6 +18,8 @@ function hello(){
                 if (resp!="nodatos") {
                   var array = typeof objArray != 'object' ? JSON.parse(resp) : objArray;
                   crearLista(array);
+                }else{
+                    location.reload();
                 }
             }
             });
@@ -67,10 +65,13 @@ function hello(){
            tdCorreo.innerHTML=array[i][x][z].correo;
            tdEditar = document.createElement("a");
            tdEditar.innerHTML="Editar";
+           tdEditar.id="editar";
            tdEditar.setAttribute("onclick","alert('Se esta creando mi formulario de edicion, disculpa :(');");
            tdEliminar = document.createElement("a");
            tdEliminar.innerHTML="Eliminar";
-           tdEliminar.setAttribute("onclick","alert('Todavia no puedo eliminar');");
+           tdEliminar.id="eliminar";
+           tdEliminar.setAttribute("name",array[i][x][z].nombres);
+           tdEliminar.onclick = function () { eliminar(this.name); };
 
            tr.appendChild(tdnom);
            tr.appendChild(tdusuario);
@@ -94,6 +95,22 @@ function hello(){
        
    }
 
-function hello(){
-    alert("Hola");
-  }
+function eliminar(id){
+
+    var url = 'php/eliminar_.php';
+    var pregunta = confirm('¿Esta seguro de eliminar este Producto?');
+    if(pregunta==true){
+        $.ajax({
+            type:'POST',
+            url:url,
+            data:'id='+id+"&partida="+1,
+            success: function(resp){
+                var array = typeof objArray != 'object' ? JSON.parse(resp) : objArray;
+                crearLista(array);
+            }
+        });
+        return false;
+    }else{
+        return false;
+    }
+}

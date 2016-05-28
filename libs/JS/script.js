@@ -13,7 +13,7 @@
 	 			"usuario" : usr,
 	 			"password" : pwd
 	 		};
-
+			console.log(datosLogin);
 	 		$.ajax ({
 	 		data : datosLogin,
 	 		type : 'post',

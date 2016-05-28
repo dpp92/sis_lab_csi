@@ -75,9 +75,17 @@
         <!-- Script para add Usuario-->
          <script >
              $(document).ready(function() {
+                 Object.size = function(obj) {
+                     var size = 0, key;
+                     for (key in obj) {
+                         if (obj.hasOwnProperty(key)) size++;
+                     }
+                     return size;
+                 };
             $('.msgResp').hide();
              var numInputCurso = 1;
              var numInputCosa  = 1;
+             var hasData = "no";
 
                 function eliminar(cont,obj){
                     fi = document.getElementById(cont);
@@ -109,6 +117,8 @@
 
                         crearElementos(arCurso);
                         numInputCurso++;
+                        hasData = "si";
+
                     }
                     if (idElem == "addCosa"){
                         arCurso = new Array(
@@ -120,10 +130,12 @@
                         );
                         crearElementos(arCurso);
                         numInputCosa++;
+                        hasData = "si";
                     }
 
                 });
                 $('.btnDism').click(function(a){
+
                   var idElem = $(this).attr('id');
                   if(idElem == "dismCurso"){
                       if (numInputCurso != 0) { $('#inputCurso' + numInputCurso).remove(); numInputCurso = numInputCurso - 1; }
@@ -133,30 +145,67 @@
                   }
                 });
 
-                 var divValue, values = '',array = [];
+                 var divValue, values = '',array = {},a=1;
 
                  $('#formAddUser').submit(function () {
-                     $(divValue).empty();
-                     $(divValue).remove(); values = '';
+                     values = '';
+                     console.log("primer pulso");
+
+
                      $('input').each(function() {
-                         divValue = $(document.createElement('div')).css({
-                             padding:'5px', width:'200px'
-                         });
 
                          if(this.value == ""){
-                             $(".msgResp").show();
+
+                             $(".msgResp").css({"background-color": "#eb802f","display":"block"
+                             ,"background-image":"-webkit-linear-gradient(top, #eb802f, #f21111"
+                             ,"background-image": "-moz-linear-gradient(top, #eb802f, #f21111)"
+                             ,"background-image": "-ms-linear-gradient(top, #eb802f, #f21111)"
+                             ,"background-image": "-o-linear-gradient(top, #eb802f, #f21111)"
+                             ,"background-image": "linear-gradient(to bottom, #eb802f, #f21111)"
+                             ,"-webkit-border-radius":"8"
+                             ,"border-radius": "20px"
+                             ,"font-family": "TimesNewRoman"
+                             ,"color": "#ffffff",
+                             "font-size": "16px"
+                             ,"padding": "10px 20px 10px 20px"
+                             ,"text-decoration": "none"
+
+                                 }
+                             );
+
+                            a++;
                          }else{
+
                              var values= this;
-                             //alert("values.id="+ values.id + ", values.value=" + values.value);
                              array[values.id] = values.value;
-                             $(divValue).append('<p><b>Tus valores añadidos</b></p>');
+                             //$(divValue).append('<p><b>Tus valores añadidos</b></p>');
+                             if (hasData=="si"){
+                                 $('#formAddUser').click();
+                                 hasData="no";
+                             }
+                             if (this.size > 9) {
+
+                                 $.ajax({
+                                     data: array + "select="+getSelect,
+                                     type: 'post',
+                                     contentType: $(this).attr('enctype'),
+                                     url: 'php/getNewUser.php',
+                                     success: function (resp) {
+                                        // var array = typeof objArray != 'object' ? JSON.parse(resp) : objArray;
+                                         console.log(resp);
+                                     },
+                                 });
+                                 array = {};
+                             }
                          }
 
 
                      });
-                     console.log(array);
-                     $(divValue).append(array.toString());
-                     $('#submit').append(divValue);
+                     $('input').focus(function(){
+                         $(".msgResp").hide();
+                         a=1;
+                     });
+
                      return false;
                  })
 
@@ -235,8 +284,8 @@
                 background-image: -ms-linear-gradient(top, #38c2b7, #2196de);
                 background-image: -o-linear-gradient(top, #38c2b7, #2196de);
                 background-image: linear-gradient(to bottom, #38c2b7, #2196de);
-                -webkit-border-radius: 12;
-                -moz-border-radius: 12;
+                -webkit-border-radius: 12px;
+                -moz-border-radius: 12px;
                 border-radius: 12px;
                 font-family: Georgia;
                 color: #383838;
@@ -254,7 +303,7 @@
                 text-decoration: none;
             }
 
-            
+
 
         </style>
  <!--Inicia div tabs-->
