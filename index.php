@@ -7,6 +7,6 @@ if (isset($_GET['m'])) {
 } else{
 $pagina= "index";
 }
-
+//david puc poot
  echo $TEMPLATE->mostrar_template($pagina);
  ?>
